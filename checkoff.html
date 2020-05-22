@@ -1,0 +1,1239 @@
+<!doctype html>
+<head>
+  <title>Checkoff</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel=stylesheet type=text/css href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    .cardBody {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+  
+    .blueButton {
+      background: #00BBD3;
+      padding: 5px;
+      margin: 15px;
+      color: white;
+      text-align: center;
+      width: 150px;
+      border-radius: 5px;
+      transition: 0.2s;
+      cursor: pointer;
+      user-select: none;
+      display: inline-block;
+    }
+  
+    .blueButton:hover {
+      background: #55D1E1;
+      transition: 0.2s;
+    }
+  
+    .blueButton i {
+      vertical-align: bottom;
+    }
+  
+    .page {
+      min-width: 400px;
+    }
+  
+    h2 {
+      color: white;
+      text-align: center;
+      font-style: normal;
+      margin: 15px 15px 0 15px;
+      font-size: 24px;
+      font-weight: 400;
+      background: #00BBD3;
+      padding: 30px;
+      border-radius: 5px 5px 0 0;
+    }
+  
+    h3 {
+      color: black;
+      font-style: normal;
+      padding: 10px;
+      text-align: center;
+      font-size: 25px;
+    }
+  
+    h4 {
+      color: black;
+      text-align: center;
+      font-weight: 300;
+      margin-top: 10px;
+    }
+  
+    .page table {
+      background: none;
+      margin: 0 auto;
+    }
+  
+    td i {
+      vertical-align: bottom;
+      color: orange;
+      cursor: pointer;
+      user-select: none;
+    }
+  
+    tr {
+      line-height: 2em;
+    }
+  
+    .centerContainer {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .page table tr:hover {
+      background: white;
+    }
+  
+    .value input[type=text] {
+      border: none;
+      padding: 5px;
+      width:100%;
+    }
+
+    .value input[type=text] .halfWidth {
+      width:50%;
+    }
+
+    input[type=text]:focus {
+      outline: none;
+    }
+  
+    input[type=checkbox] {
+      margin-top: 8px;
+      margin-left: 4px;
+    }
+  
+    input:-moz-placeholder {
+      color: lightgray;
+    }
+  
+    input::-webkit-input-placeholder {
+      color: lightgray;
+    }
+  
+    input:-ms-input-placeholder {
+      color: lightgray;
+    }
+  
+    .centerContainer textarea {
+      padding: 15px;
+      background: #e9fcff;
+    }
+  
+    .page-container {
+      width: auto;
+      max-width: none;
+      box-shadow: none;
+    }
+  
+    .page {
+      width: auto;
+      max-width: none;
+      margin: 0;
+      box-shadow: none;
+    }
+  
+    .page h2 {
+      border-radius: 0;
+    }
+  
+    .customEditButton {
+      color: #FFA500;
+      background-color: #0000;
+      border-radius: 5px;
+      vertical-align: bottom;
+      user-select: none;
+      cursor: pointer;
+    }
+  
+    .customEditButtonActive {
+      color: white !important;
+      background: #FFA500;
+      box-shadow: 0 0 15px #FFA500;
+    }
+  
+    .customEditButtonContainer {
+      background: none;
+      border: none;
+      vertical-align: bottom;
+      float: right;
+      outline: none;
+    }
+  
+    .flexy select {
+      border: none;
+    }
+  
+    .flex-parent {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: space-between;
+    }
+  
+    .flexy {
+      flex: 0 1 auto;
+      /* display: inline-block; */
+      display: flex;
+      margin: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      overflow: hidden;
+      background: #e9fcff;
+    }
+  
+    .touched {
+      background: white !important;
+    }
+  
+    .description {
+      background: #00BBD3;
+      color: white;
+      display: inline-block;
+      vertical-align: top;
+      min-height: 24px;
+      padding: 5px 5px 0 5px;
+      width: 180px;
+      flex: 0 0 180px;
+    }
+  
+    .value {
+      display: inherit;
+      padding: 3px 5px 2px 5px;
+      margin-left: -4px;
+      background-color: #0000;
+      flex: 1 1 auto;
+    }
+  
+    .value input[type=text] {
+      background-color: #0000;
+    }
+  
+    .value select {
+      margin:4px;
+      background-color: #0000;
+      width:100%;
+    }
+  
+    .flexy i {
+      font-size: 16px;
+      user-select: none;
+      cursor: pointer;
+      color: orange;
+      padding: 5px 0;
+    }
+  
+    .sliderContainer {
+      margin:0;
+      cursor: pointer;
+      user-select: none;
+      display: inline-block;
+      width: 60px;
+      height: 26px;
+      vertical-align: bottom;
+      transition: 0.2s ease-out;
+    }
+  
+    .sliderContainer:focus, .sliderContainer:hover {
+      outline:none;
+      margin-left:5px;
+      transition: 0.2s ease-out;
+    }
+
+    .nSlider {
+      padding: 2px 4px 2px 2px;
+      width: 50px;
+      background: #F44336;
+      position: absolute;
+      border-radius: 15px;
+      color: white;
+      text-align: right;
+      transition: 0.5s;
+    }
+  
+    .ySlider {
+      padding: 2px 2px 2px 4px;
+      width: 50px;
+      background: #46d225;
+      border-radius: 15px;
+      color: white;
+      position: absolute;
+      opacity: 0;
+      transition: 0.5s;
+    }
+  
+    .sliderDot {
+      transition: all 0.5s cubic-bezier(0.05, 0.06, 0.05, 0.95);
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 10px;
+      margin-top: 6px;
+      /* margin-left: 38px; */
+      margin-left: 5px;
+    }
+  
+    .hideMe {
+      display: none;
+    }
+
+    .textBoxContainer {
+      width:100%;
+    }
+
+  </style>
+  <style media="screen">
+    .printShow {
+      display: none;
+    }
+  
+    .flexy {
+      width: 100%;
+      margin: 0 15px;
+    }
+  
+    .halfWidth {
+      width: 50%;
+    }
+  
+    h2 {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
+    }
+  
+    body {
+      background:white;
+      transition:0.2s ease-out;
+      opacity:0;
+    }
+  
+    #content {
+      padding-top: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .centerContainer textarea {
+      border: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      outline: none;
+      vertical-align: top;
+    }
+  </style>
+  <style media="print">
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    div {
+      color: black;
+      font-weight: 300;
+    }
+  
+    h4 {
+      margin-top: 20px;
+    }
+  
+    .printShow {
+      display: block;
+    }
+  
+    .flex-parent {
+      width: 1000px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+  
+    .printHide,
+    .customEditButton,
+    .autoFillButton,
+    .sliderDot {
+      display: none !important;
+    }
+  
+    .flexy {
+      box-shadow: none;
+      border-bottom: 1px solid black;
+      border-radius: 0;
+      margin: 0;
+      width: 500px;
+    }
+  
+    .flexy,
+    input,
+    textarea {
+      font-size: 20px;
+    }
+  
+    .value {
+      width: 180px;
+    }
+  
+    .value input[type="text"] {
+      max-width: none;
+    }
+  
+    .halfWidth {
+      width: 90px !important;
+    }
+  
+    .flexy select {
+      border: none;
+      width: initial;
+      font-size: 20px;
+      font-weight: 300;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+  
+    select::-ms-expand {
+      display: none;
+    }
+  
+    .nSlider,
+    .ySlider {
+      color: black;
+      border-radius: 0;
+      text-align: left;
+      background: none;
+    }
+  
+    .description {
+      color: black;
+      width: 200px;
+    }
+  
+    .value {
+      min-width: 250px;
+    }
+  
+    .value input[type=text]::placeholder {
+      color: rgba(0, 0, 0, 0) !important;
+    }
+  
+    .textBoxTitle {
+      font-size: 20px;
+    }
+  
+    #radwinContainer {
+      margin-top: 32px;
+    }
+  
+    .centerContainer textarea {
+      border: 1px solid gray;
+      border-radius: 0;
+    }
+  
+    .template {
+      display: none;
+    }
+  </style>
+
+  <script src="ta.js"></script>
+  <script src="checkoff-data.js"></script>
+  <script type="text/javascript"> // Reload Warning
+    window.onbeforeunload = function() {
+      return "Are you sure you want to reload? Changes may not be saved.";
+    }
+  </script>
+  <script type="text/javascript"> // copyToClipboard
+    function copyToClipboard () {
+      const el = document.createElement('textarea');
+      el.value = document.getElementById('directory').innerHTML;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    };
+  </script>
+  <script type="text/javascript"> // GENERIC JAVASCRIPT FUNCTIONS
+    function findIdsInClass(className) {
+      idsInClass = document.getElementsByClassName(className);
+      var output = [];
+      for (i = 0; i < idsInClass.length; i++) {
+        output.push(idsInClass[i]['id'])
+      }
+      return output
+    };
+    function findClass (elementId, className) {
+      classFound = false;
+      elementClasses = document.getElementById(elementId).getAttribute('class').split(' ');
+      for (var i = 0; i < elementClasses.length; i++) {
+        if (elementClasses[i] == className) {
+          classFound = true;
+        }
+      }
+      return classFound;
+    };
+    function findObjectClass (object, className) {
+      classFound = false;
+      objectClasses = object.getAttribute('class').split(' ');
+      for (var i = 0; i < objectClasses.length; i++) {
+        if (objectClasses[i] == className) {
+          classFound = true;
+        }
+      }
+      return classFound;
+    };
+    function addClass(elementId, className) {
+      classFound = findClass(elementId, className);
+      if (!classFound) {
+        document.getElementById(elementId).setAttribute("class", (document.getElementById(elementId).getAttribute('class') + " " + className))
+      }
+    };
+    function addObjectClass(object, className) {
+      classFound = findObjectClass(object, className);
+      if (!classFound) {
+        object.setAttribute("class", (object.getAttribute('class') + " " + className))
+      }
+    };
+    function removeClass(elementId, className) {
+      elementClasses = document.getElementById(elementId).getAttribute('class').split(' ');
+      var newClasses = "";
+      var firstClassAdded = false;
+      for (var i = 0; i < elementClasses.length; i++) {
+        if (elementClasses[i] != className) {
+          if (firstClassAdded == true) {
+            newClasses = newClasses + " " + elementClasses[i];
+          } else {
+            newClasses = elementClasses[i];
+            firstClassAdded = true;
+          }
+        }
+      }
+      document.getElementById(elementId).setAttribute('class', newClasses);
+    };
+    function removeObjectClass(object, className) {
+      objectClasses = object.getAttribute('class').split(' ');
+      newClasses = "";
+      var firstClassAdded = false;
+      for (var i = 0; i < objectClasses.length; i++) {
+        if (objectClasses[i] != className) {
+          if (firstClassAdded == true) {
+            newClasses = newClasses + " " + objectClasses[i];
+          } else {
+            newClasses = objectClasses[i];
+            firstClassAdded = true;
+          }
+        }
+      }
+      object.setAttribute("class", newClasses)
+    };
+    function toggleClass(elementId, className) {
+      classFound = findClass(elementId, className);
+      if (classFound) {
+        removeClass(elementId, className);
+      } else {
+        document.getElementById(elementId).setAttribute("class", (document.getElementById(elementId).getAttribute('class') + " " + className))
+      }
+    };
+    function toggleObjectClass(object, className) {
+      classFound = findObjectClass(object, className);
+      if (classFound) {
+        removeObjectClass(object, className);
+      } else {
+        object.setAttribute("class", (object.getAttribute('class') + " " + className))
+      }
+    };
+    function ajaxCall(a, b, c, d){ // method, URL, data, callback
+      var c = new XMLHttpRequest;
+      c.open(a, b);
+      c.onload = d;
+      c.send()
+    };
+    function callback(){
+      if (this.response !== undefined) {
+        document.getElementById(findIdsInClass('outputDiv')[0]).innerHTML=this.response;
+        removeClass(findIdsInClass('outputDiv')[0], 'outputDiv')
+      }
+    };
+    function ajax(outputDiv, url, method, data) {
+      addClass(outputDiv, 'outputDiv')
+      ajaxCall('GET', url, undefined, callback);
+    };
+    function keyFilter(object, additionalCommand) {
+      if (event.keyCode == 13 || event.keyCode == 32) {
+        toggleSlider(object);
+        event.preventDefault();
+        if (additionalCommand != undefined) {
+          eval(additionalCommand);
+        }
+      }
+    };
+  </script>
+  <script type="text/javascript"> // PAGE SPECIFIC FUNCTIONS
+    function quickFill(thisParent, text, index) {
+      if (index==undefined) { index=0 };
+      if (text==undefined) {
+        thisParent.getElementsByTagName('*')[index].value = thisParent.getElementsByTagName('*')[index].placeholder;
+      } else {
+        thisParent.getElementsByTagName('*')[index].value = text;
+      }
+    }
+    function customValue(buttonId, selectId, textInputId) {
+      toggleClass(buttonId, 'customEditButtonActive');
+      if (findClass(buttonId, 'customEditButtonActive')) {
+        addClass(selectId, 'hideMe')
+        removeClass(textInputId, 'hideMe')
+      } else {
+        addClass(textInputId, 'hideMe')
+        removeClass(selectId, 'hideMe')
+      }
+    }
+    function customObjectValue(object) {
+      select = object.getElementsByTagName('select')[0];
+      textInput = object.getElementsByTagName('input')[0];
+      if (findObjectClass(textInput, 'hideMe')) {
+        addObjectClass(select, 'hideMe')
+        removeObjectClass(textInput, 'hideMe')
+      } else {
+        addObjectClass(textInput, 'hideMe')
+        removeObjectClass(select, 'hideMe')
+      }
+    }
+    function toggleSlider(slider) {
+      marginLeft=window.getComputedStyle(slider.getElementsByClassName('sliderDot')[0], null).getPropertyValue("margin-left");
+      if (marginLeft=='5px') {
+        slider.getElementsByTagName('*')[0].style.background='#80B444';
+        slider.getElementsByTagName('*')[0].style.opacity='0';
+        slider.getElementsByTagName('*')[1].style.opacity='1';
+        slider.getElementsByTagName('*')[2].style.marginLeft='38px';
+        slider.dataset.value = 'true';
+      } else {
+        slider.getElementsByTagName('*')[0].style.background='#F44336';
+        slider.getElementsByTagName('*')[0].style.opacity='1';
+        slider.getElementsByTagName('*')[1].style.opacity='0';
+        slider.getElementsByTagName('*')[2].style.marginLeft='5px';
+        slider.dataset.value = 'false';
+      }
+    }
+    function formatMAC(e) {
+      var r = /([a-f0-9]{2})([a-f0-9]{2})/i,
+      str = e.target.value.replace(/[^a-f0-9]/ig, "");
+      while (r.test(str)) { str = str.replace(r, '$1' + ':' + '$2'); }
+      e.target.value = str.slice(0, 17);
+    };
+    function toggleTableElements(sourceDiv, n) {
+      hideElements=document.getElementById('routerContainer').children[0].children;
+      if (sourceDiv.children[1].style['opacity'] == 1) {
+        displayStatus="none";
+      } else {
+        displayStatus="inline-block";
+      }
+      for (var i = n; i < hideElements.length; i++) {
+        hideElements[i].style.display=displayStatus;
+      }
+    }
+    function averageSpeeds() {
+      nDown=0;
+      nUp=0;
+      totalDown=0.0;
+      totalUp=0.0;
+      averageDown = 0.0;
+      averageUp = 0.0;
+      speeds=document.getElementsByClassName('speedValue')
+      for (var i = 0; i < speeds.length; i++) {
+        thisSpeedDown=parseFloat(speeds[i].getElementsByTagName('input')[0].value);
+        thisSpeedUp=parseFloat(speeds[i].getElementsByTagName('input')[1].value);
+        if (!isNaN(thisSpeedDown)) {
+          totalDown = (totalDown + parseFloat(speeds[i].getElementsByTagName('input')[0].value))
+          nDown = (nDown + 1);
+        }
+        if (!isNaN(thisSpeedUp)) {
+          totalUp = (totalUp + parseFloat(speeds[i].getElementsByTagName('input')[1].value))
+          nUp = (nUp + 1);
+        }
+      }
+      averageDown = (totalDown / nDown);
+      if (isNaN(averageDown)) { averageDown = '-' } else {
+        averageDown = averageDown.toString();
+        if (averageDown.includes('.')) {
+          if (averageDown.split('.')[1].length > 2) {averageDown = averageDown.split('.')[0] + '.' + averageDown.split('.')[1].slice(0, 2)};
+        }
+      };
+      averageUp = (totalUp / nUp);
+      if (isNaN(averageUp)) { averageUp = '-' } else {
+        averageUp = averageUp.toString();
+        if (averageUp.includes('.')) {
+          if (averageUp.split('.')[1].length > 2) {averageUp = averageUp.split('.')[0] + '.' + averageUp.split('.')[1].slice(0, 2)};
+        }
+      };
+      document.getElementById('speedAverage').innerHTML=averageDown.toString() + " / " + averageUp.toString();
+    }
+    function dataImport() {
+      var rows = document.getElementsByClassName('flexy');
+      for (var i = 0; i < rows.length; i++) {
+          rows[i].onclick = function() {
+              addObjectClass(this, 'touched');
+          }
+          rows[i].oninput = function() {
+              addObjectClass(this, 'touched');
+          }
+      }
+      connectionType = "Radwin Wireless";
+      if (connectionType == 'Radwin Wireless') {
+        toggleClass('wirelessContainer', 'hideMe');
+        toggleClass('radwinContainer', 'hideMe');
+        toggleClass('radwinTypeButton', 'typeButtonSelected');
+        removeClass('packageSelectWireless', 'hideMe');
+        removeClass('locationOutdoorUnit', 'hideMe');
+        removeClass('locationCable', 'hideMe');
+        addClass('bridgeMode', 'hideMe');
+        document.getElementById('packageSelectDSL').classList.add('hideMe');
+        document.getElementById('packageSelectCable').classList.add('hideMe');
+      } else if (connectionType == 'Alvarion Wireless') {
+        toggleClass('wirelessContainer', 'hideMe');
+        toggleClass('alvarionContainer', 'hideMe');
+        toggleClass('alvarionTypeButton', 'typeButtonSelected');
+        removeClass('packageSelectWireless', 'hideMe');
+        removeClass('locationOutdoorUnit', 'hideMe');
+        removeClass('locationCable', 'hideMe');
+        addClass('bridgeMode', 'hideMe');
+        document.getElementById('packageSelectDSL').classList.add('hideMe');
+        document.getElementById('packageSelectCable').classList.add('hideMe');
+      } else if (connectionType == 'DSL Internet') {
+        toggleClass('dslContainer', 'hideMe');
+        toggleClass('dslTypeButton', 'typeButtonSelected');
+        removeClass('packageSelectDSL', 'hideMe');
+        addClass('locationOutdoorUnit', 'hideMe');
+        addClass('locationCable', 'hideMe');
+        removeClass('bridgeMode', 'hideMe');
+        document.getElementById('packageSelectWireless').classList.add('hideMe');
+        document.getElementById('packageSelectCable').classList.add('hideMe');
+      } else if (connectionType == 'Cable Internet') {
+        toggleClass('cableContainer', 'hideMe');
+        toggleClass('cableTypeButton', 'typeButtonSelected');
+        removeClass('packageSelectCable', 'hideMe');
+        addClass('locationOutdoorUnit', 'hideMe');
+        addClass('locationCable', 'hideMe');
+        removeClass('bridgeMode', 'hideMe');
+        document.getElementById('packageSelectWireless').classList.add('hideMe');
+        document.getElementById('packageSelectDSL').classList.add('hideMe');
+      }
+      var macAddressInputs = document.getElementsByClassName("macAddressInput");
+      for (var i = 0; i < macAddressInputs.length; i++) {
+        macAddressInputs[i].addEventListener("keyup", formatMAC, false);
+      }
+      var speedTestInputs = document.getElementsByClassName("speedValue");
+      for (var i = 0; i < speedTestInputs.length; i++) {
+        speedTestInputs[i].getElementsByTagName('input')[0].addEventListener("keyup", averageSpeeds, false);
+        speedTestInputs[i].getElementsByTagName('input')[1].addEventListener("keyup", averageSpeeds, false);
+      }
+    }
+    function revealElements(tag) {
+      processElements=document.getElementsByClassName(tag);
+      for (var i = 0; i < processElements.length; i++) {
+        showElement=false;
+        // console.log(JSON.parse(document.querySelectorAll('[data-parentSelector]')[0].attributes['data-parentselections'].value);)
+        // console.log(document.getElementById('radioSuip').dataset['parentselections']);
+        if (showElement) {processElements[i].style.display = "block";}
+        else {processElements[i].style.display = "none";}
+      }
+    };
+  </script>
+  <script> // new AJAX/JSON checkoff functions
+    function findData(dataSource, format) {
+      try {
+        result = eval('accountData' + dataSource);
+        if (result != undefined) {
+          if (format != undefined) {
+            if (format == 'title') {
+              return toTitleCase(result)
+            } else if (format == 'upper') {
+              return result.toUpperCase()
+            } else if (format == 'title') {
+              return result.toLowerCase()
+            } else if (format.charAt(0) == '*') {
+              return parseFloat(result) * parseFloat(format.slice(1))
+            } else {
+              console.log('hmm');
+            }
+          }
+          return result
+        }
+        return ""
+      }
+      catch(TypeError) {
+        return ""
+      }
+    }
+
+    function drawPage() {
+      // Get Data
+    //   if (document.getElementById('jsonTemplateData').innerHTML == "replaceMe") {
+    //     ajaxNext('jsonTemplateData', 'api/checkofftemplatejson', 'GET', undefined, "drawPage();");
+    //     return
+    //   }
+    //   templateData=JSON.parse(document.getElementById('jsonTemplateData').innerHTML);
+      templateData = checkoffData;
+      if (getUrlVars()["cnum"] != undefined) {
+        if (document.getElementById('jsonAccountData').innerHTML == "replaceMe") {
+          ajaxNext('jsonAccountData', 'api/connection?number='+getUrlVars()["cnum"], 'GET', undefined, "drawPage();"); // TODO: Replace this with document.getElementById('connectionNumber').value or something, eventally.
+          return
+        }
+        // accountData=JSON.parse(document.getElementById('jsonAccountData').innerHTML);
+        accountData=JSON.parse(document.getElementById('jsonAccountData').innerHTML)['account']['networks'][getUrlVars()["cnum"]];
+      } else {
+        accountData={}
+      }
+
+      // Draw page
+      document.getElementById('content').innerHTML=buildObject(templateData);
+      processRules(templateData);
+
+      // Show body
+      document.getElementsByTagName('body')[0].style.opacity="1";
+      document.getElementsByTagName('body')[0].style.background="linear-gradient(0deg, #ffb20033, #00bbd312)";
+
+      // Add event listeners; duplicates are discarded by addEventListener function.
+      var macAddressInputs = document.getElementsByClassName("macAddressInput");
+      for (var i = 0; i < macAddressInputs.length; i++) {
+        macAddressInputs[i].addEventListener("keyup", formatMAC, false);
+      }
+      var speedTestInputs = document.getElementsByClassName("speedValue");
+      for (var i = 0; i < speedTestInputs.length; i++) {
+        speedTestInputs[i].getElementsByTagName('input')[0].addEventListener("keyup", averageSpeeds, false);
+        speedTestInputs[i].getElementsByTagName('input')[1].addEventListener("keyup", averageSpeeds, false);
+      }
+    }
+
+    function importData(done) {
+      if (done == undefined) {
+        console.log('Requesting Account Data...')
+        queryNum = getUrlVars()["cnum"];
+        if (document.getElementById('queryNum').value != '') {queryNum = document.getElementById('queryNum').value;}
+        ajaxNext('jsonAccountData', 'api/connection?number=' + queryNum, 'GET', undefined, "importData(true);")
+        return
+      }
+      console.log('Account Data Recieved, updating document.')
+      accountData = JSON.parse(document.getElementById('jsonAccountData').innerHTML)['account']['networks'][queryNum];
+      processRules(templateData)
+    }
+
+    function buildObject(data) {
+      if ( data.type == "container" ) {
+        output=""
+        for (i=0, containerCount=data.children.length;i< containerCount;i++) {
+          output=output.concat(buildObject(data.children[i]));
+        }
+        return output
+
+      } else if (data.type == "section") {
+        childrenContent=""
+        for (j=0, sectionCount=data.children.length;j< sectionCount;j++) {
+          childrenContent=childrenContent.concat(buildObject(data.children[j]));
+        }
+        output = document.getElementById('templateSection').innerHTML;
+        if (data.pageBreak != undefined) {
+          output = '<div style="page-break-before: always"></div>' + output
+        }
+        output = output.replace('sectionName', data.title)
+        output = output.replace('varId', data.id);
+        output = output.replace('sectionChildren', childrenContent);
+        return output;
+
+      } else if (data.type == "boolean") {
+        output=document.getElementById('templateBoolean').innerHTML;
+        output=output.replace('varId', data.id);
+        output=output.replace('varTitle', data.title);
+        if (data.readOnly != undefined) { output = output.replace('data-readonly="false"', 'data-readonly="true"') }
+        return output
+        
+      } else if (data.type == "text") {
+        output=document.getElementById('templateText').innerHTML;
+        output=output.replace('varId', data.id);
+        output=output.replace('varTitle', data.title);
+        if (data.hint != undefined) { output=output.replace('placeholder=""', 'placeholder="' + data.hint + '"'); }
+        if (data.readOnly != undefined) { output = output.replace('data-readonly="false"', 'data-readonly="true"') }
+        return output
+        
+      } else if (data.type == "textBox") {
+        output=document.getElementById('templateTextbox').innerHTML;
+        output=output.replace('varId', data.id);
+        output=output.replace('varTitle', data.title);
+        if (data.hint != undefined) { output=output.replace('placeholder=""', 'placeholder="' + data.hint + '"'); }
+        if (data.readOnly != undefined) { output = output.replace('data-readonly="false"', 'data-readonly="true"') }
+        return output
+        
+      } else if (data.type == "digit") {
+        output=document.getElementById('templateText').innerHTML;
+        output=output.replace('varId', data.id);
+        output=output.replace('varTitle', data.title);
+        if (data.hint != undefined) { output=output.replace('placeholder=""', 'placeholder="' + data.hint + '"'); }
+        if (data.readOnly != undefined) { output = output.replace('data-readonly="false"', 'data-readonly="true"') }
+        return output
+        
+      } else if (data.type == "macAddress") {
+        output=document.getElementById('templateMacAddress').innerHTML;
+        output=output.replace('varId', data.id);
+        output=output.replace('varTitle', data.title);
+        if (data.hint != undefined) { output=output.replace('placeholder="00:00:00:00:00:00"', 'placeholder="' + data.hint + '"'); }
+        if (data.readOnly != undefined) { output = output.replace('data-readonly="false"', 'data-readonly="true"') }
+        return output
+        
+      } else if (data.type == "multipleChoice") {
+        output=document.getElementById('templateMultipleChoice').innerHTML;
+        output = output.replace('varId', data.id);
+        output=output.replace('varTitle', data.title);
+        optionsOutput="";
+        for (k=0, optionsCount=data.choices.length;k<optionsCount;k++) {
+          optionsOutput=optionsOutput.concat(document.getElementById('templateOption').innerHTML.replace(/varTitle/g, data.choices[k]))
+        }
+        output=output.replace('varOptions', optionsOutput);
+        if (data.readOnly != undefined) { output = output.replace('data-readonly="false"', 'data-readonly="true"') }
+        return output
+        
+      } else if (data.type == "textDouble") {
+        output=document.getElementById('templateTextDouble').innerHTML;
+        output = output.replace('varId', data.id);
+        output=output.replace('varTitle', data.title);
+        if (data.hint1 != undefined) { output=output.replace('placeholder1=""', 'placeholder="' + data.hint1 + '"'); }
+        else { output=output.replace('placeholder1=""', 'placeholder=""'); }
+        if (data.hint2 != undefined) { output=output.replace('placeholder2=""', 'placeholder="' + data.hint2 + '"'); }
+        else { output=output.replace('placeholder2=""', 'placeholder=""'); }
+        if (data.readOnly != undefined) { output=output.replace('data-readonly="false"', 'data-readonly="true"') }
+        return output
+      }
+    }
+
+    function processRules(data, overwrite) {
+      // Code Style choice for readability - I would like to keep these separated by type, so that I can quickly edit change template structures as needed and update the rule processing to follow.
+      if (data.type == "container") {
+        for (i = 0, containerCount = data.children.length; i < containerCount; i++) {
+          processRules(data.children[i], overwrite=overwrite);
+        }
+
+      } else if (data.type == "section") {
+        if (data.depends != undefined) {
+          if (eval(htmlUnescape(data.depends))) { document.getElementById(data.id).style.display = 'inherit'; }
+          else { document.getElementById(data.id).style.display = 'none'; return }
+        }
+        for (j = 0, sectionCount = data.children.length; j < sectionCount; j++) {
+          processRules(data.children[j], overwrite=overwrite);
+        }
+
+      } else if (data.type == "multipleChoice") {
+        if (data.depends != undefined) {
+          if (eval(htmlUnescape(data.depends))) { document.getElementById(data.id).parentNode.style.display = 'inherit'; }
+          else { document.getElementById(data.id).parentNode.style.display = 'none'; return }
+        }
+        if (data.dataSource != undefined) {
+          thisValue=findData(data.dataSource, data.dataSourceFormat);
+          if (document.getElementById(data.id).parentNode.dataset.changed == "true") {
+            if (overwrite == data.id) {
+              document.getElementById(data.id).children[3].style.display = 'none';
+              valueReset(document.getElementById(data.id).parentNode);
+            } else {
+              document.getElementById(data.id).children[3].style.display = 'initial';
+              document.getElementById(data.id).children[3].title = thisValue;
+              document.getElementById(data.id).dataset.importValue = thisValue;
+              return
+            }
+          }
+          for (k=0;k<document.getElementById(data.id).getElementsByTagName('option').length;k++) {
+            if (document.getElementById(data.id).getElementsByTagName('option')[k].value == thisValue) {
+              document.getElementById(data.id).getElementsByTagName('select')[0].selectedIndex = k;
+            }
+          }
+        }
+
+      } else if (data.type == "boolean") {
+        if (data.depends != undefined) {
+          if (eval(htmlUnescape(data.depends))) { document.getElementById(data.id).parentNode.style.display='inherit'; }
+          else { document.getElementById(data.id).parentNode.style.display='none'; return }
+        }
+
+      } else if (data.type == "text") {
+        if (data.depends != undefined) {
+          if (eval(htmlUnescape(data.depends))) { document.getElementById(data.id).parentNode.style.display='inherit'; }
+          else { document.getElementById(data.id).parentNode.style.display='none'; return }
+        }  
+        if (data.autoFill != undefined && document.getElementById(data.id).parentNode.dataset.changed != "true") { document.getElementById(data.id).getElementsByTagName('input')[0].value = eval(htmlUnescape(data.autoFill)); }
+        if (data.dataSource != undefined) {
+          thisValue = findData(data.dataSource, data.dataSourceFormat);
+          if (document.getElementById(data.id).parentNode.dataset.changed == "true") {
+            if (overwrite == data.id) {
+              document.getElementById(data.id).parentNode.children[2].style.display = 'none';
+              valueReset(document.getElementById(data.id).parentNode);
+            } else {
+              if (document.getElementById(data.id).getElementsByTagName('input')[0].value != thisValue) {
+                document.getElementById(data.id).parentNode.children[2].style.display = 'initial';
+                document.getElementById(data.id).parentNode.children[2].title = thisValue;
+                document.getElementById(data.id).dataset.importValue = thisValue;
+              }
+              return
+            }
+        }
+        document.getElementById(data.id).getElementsByTagName('input')[0].value = thisValue;
+        }
+
+      } else if (data.type == "digit") {
+        if (data.depends != undefined) {
+          if (eval(htmlUnescape(data.depends))) { document.getElementById(data.id).parentNode.style.display = 'inherit'; }
+          else { document.getElementById(data.id).parentNode.style.display = 'none'; return }
+        }  
+        if (data.autoFill != undefined && document.getElementById(data.id).parentNode.dataset.changed != "true") { document.getElementById(data.id).getElementsByTagName('input')[0].value = eval(htmlUnescape(data.autoFill)); }
+        if (data.dataSource != undefined) {
+          thisValue = findData(data.dataSource, data.dataSourceFormat);
+          if (document.getElementById(data.id).parentNode.dataset.changed == "true") {
+            if (overwrite == data.id) {
+              document.getElementById(data.id).parentNode.children[2].style.display = 'none';
+              valueReset(document.getElementById(data.id).parentNode);
+            } else {
+              if (document.getElementById(data.id).getElementsByTagName('input')[0].value != thisValue) {
+                document.getElementById(data.id).parentNode.children[2].style.display = 'initial';
+                document.getElementById(data.id).parentNode.children[2].title = thisValue;
+                document.getElementById(data.id).dataset.importValue = thisValue;
+              }
+              return
+            }
+          }
+          document.getElementById(data.id).getElementsByTagName('input')[0].value = thisValue;
+        }
+
+      } else if (data.type == "macAddress") {
+        if (data.depends != undefined) {
+          if (eval(htmlUnescape(data.depends))) { document.getElementById(data.id).parentNode.style.display='inherit'; }
+          else { document.getElementById(data.id).parentNode.style.display='none'; return }
+        }  
+        if (data.autoFill != undefined && document.getElementById(data.id).parentNode.dataset.changed != "true") { document.getElementById(data.id).getElementsByTagName('input')[0].value = eval(htmlUnescape(data.autoFill)); }
+        if (data.dataSource != undefined) {
+          thisValue = findData(data.dataSource, data.dataSourceFormat);
+          if (document.getElementById(data.id).parentNode.dataset.changed == "true") {
+            if (overwrite == data.id) {
+              document.getElementById(data.id).parentNode.children[2].style.display = 'none';
+              valueReset(document.getElementById(data.id).parentNode);
+            } else {
+              if (document.getElementById(data.id).getElementsByTagName('input')[0].value != thisValue) {
+                document.getElementById(data.id).parentNode.children[2].style.display = 'initial';
+                document.getElementById(data.id).parentNode.children[2].title = thisValue;
+                document.getElementById(data.id).dataset.importValue = thisValue;
+              }
+              return
+            }
+          }
+          document.getElementById(data.id).getElementsByTagName('input')[0].value = thisValue;
+        }
+
+      } else if (data.type == "textDouble") {
+          if (data.depends != undefined) {
+            if (eval(htmlUnescape(data.depends))) { document.getElementById(data.id).parentNode.style.display='inherit'; }
+            else { document.getElementById(data.id).parentNode.style.display='none'; return }  
+          }
+        if (data.autoFill1 != undefined && document.getElementById(data.id).parentNode.dataset.changed != "true") { document.getElementById(data.id).children[0].value=eval(htmlUnescape(data.autoFill1)); }  
+        if (data.autoFill2 != undefined && document.getElementById(data.id).parentNode.dataset.changed != "true") { document.getElementById(data.id).children[1].value=eval(htmlUnescape(data.autoFill2)); }
+        if (data.dataSource1 != undefined) {
+          thisValue = findData(data.dataSource1, data.dataSourceFormat);
+          if (document.getElementById(data.id).parentNode.dataset.changed == "true") {
+            if (overwrite == data.id) {
+              document.getElementById(data.id).parentNode.children[2].style.display = 'none';
+              valueReset(document.getElementById(data.id).parentNode);
+              document.getElementById(data.id).getElementsByTagName('input')[0].value = thisValue;
+            } else {
+              if (document.getElementById(data.id).getElementsByTagName('input')[0].value != thisValue) {
+                document.getElementById(data.id).parentNode.children[2].style.display = 'initial';
+                document.getElementById(data.id).parentNode.children[2].title = thisValue;
+                document.getElementById(data.id).dataset.importValue = thisValue;
+              }
+            }
+          } else {
+            document.getElementById(data.id).getElementsByTagName('input')[0].value = thisValue;
+          }
+        }
+        if (data.dataSource2 != undefined) {
+          thisValue = findData(data.dataSource2, data.dataSourceFormat);
+          if (document.getElementById(data.id).parentNode.dataset.changed == "true") {
+            if (overwrite == data.id) {
+              document.getElementById(data.id).parentNode.children[2].style.display = 'none';
+              valueReset(document.getElementById(data.id).parentNode);
+            } else {
+              if (document.getElementById(data.id).getElementsByTagName('input')[1].value != thisValue) {
+                document.getElementById(data.id).parentNode.children[2].style.display = 'initial';
+                document.getElementById(data.id).parentNode.children[2].title = document.getElementById(data.id).parentNode.children[2].title + '/' + thisValue;
+                document.getElementById(data.id).dataset.importValue = thisValue;
+              }
+              return
+            }
+          }
+          document.getElementById(data.id).getElementsByTagName('input')[1].value = thisValue;
+        }
+
+      } else if (data.depends != undefined) {
+        if (eval(htmlUnescape(data.depends))) { document.getElementById(data.id).parentNode.style.display='inherit'; }
+        else { document.getElementById(data.id).parentNode.style.display='none'; }
+      }
+    }
+
+    function findValue(id, value) {
+      thisNode=document.getElementById(id);
+      if ("text" in thisNode.classList) {
+        if (value == undefined) {
+          return thisNode.getElementsByTagName('input')[0].value
+        }
+        if (value == thisNode.getElementsByTagName('input')[0].value) {
+          return true
+        } return false
+      }
+      if (thisNode.classList.contains("multipleChoice")) {
+        if (value == undefined) {
+          return thisNode.getElementsByTagName('option')[thisNode.getElementsByTagName('select')[0].selectedIndex].value
+        }
+        if (value == thisNode.getElementsByTagName('option')[thisNode.getElementsByTagName('select')[0].selectedIndex].value) {
+          return true
+        } return false
+      }
+      if (thisNode.classList.contains("sliderContainer")) {
+        if (value == undefined) {
+          return thisNode.dataset.value
+        }
+        if (thisNode.dataset.value == value) {
+          return true
+        }
+      }
+      return false
+    }
+
+    function valueChanged(object) {
+      if (object.dataset.readonly == 'true') { return };
+      object.classList.add('touched');
+      object.dataset.changed = "true";
+    }
+
+    function valueReset(object) {
+      object.classList.remove('touched');
+      object.dataset.changed = "false";
+    }
+  </script>
+
+</head>
+<body style="opacity:0;">
+  <h1 style="font-size: 2.5em;padding:15px;background:#FF9800;text-align:center;">Checkoff</h1>
+  <div style="width:100%;background:white;">
+    <form action="/" method=get class='add-entry printHide' style="width:100%;display:flex;">
+      <input type=text id="queryNum" name="cnum" placeholder="Search by connection number" class="materialTInput"
+        style="flex: 1 1 auto;padding:20px;font-family:roboto;font-weight:300;font-size:18px;border:none;"
+        autofocus>
+      <button type="submit" style="flex:0 1 auto;background:none;border:none;outline:none;vertical-align: top;color:white;padding:20px;cursor:pointer;background:#00BBD3;">
+        <i class="material-icons" style="">search</i>
+      </button>
+      <i class="material-icons" style="flex:0 1 auto;color:white;padding:20px;cursor:pointer;vertical-align: top;border-left:1px solid #fff;background:#00BBD3;" onclick="importData();">flash_on</i>
+    </form>
+  </div>
+  <div id="content"></div>
+
+  <div class="printHide" style="width:100%;text-align:center;">
+    <h3 style="padding-bottom:0;">Select "Save As PDF" and save files to:</h3>
+    <p id='directory' style="color:black;display:inline-block;">/</p>
+    <i onclick="copyToClipboard('/')"
+      style="color:#00bbd3!important;cursor:pointer;user-select:none;display:inline-block;font-style: normal;color:black;font-size:32px;font-family:'Material Icons';vertical-align:middle;">file_copy</i>
+    <br>
+    <div class="blueButton" onclick="window.print();"
+      style="padding:20px;font-weight:200;font-size:32px;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);background: radial-gradient(ellipse at center, rgba(255,192,33,1) 0%, rgba(232,104,0,1) 100%);">
+      <i class="material-icons" style="font-size:32px;">print</i> Print</div>
+  </div>
+
+
+
+  <div id="templates" style="display:none!important;">
+
+    <div id="templateContainer" class="template container">
+    </div>
+
+    <div id="templateSection" class="template">
+      <div id="varId" class="section">
+        <h2>sectionName</h2>
+        <div class="flex-parent">sectionChildren</div>
+      </div>
+    </div>
+
+    <div id="templateBoolean" class="template">
+      <div class="flexy" data-changed="false" data-readonly="false">
+        <div class="description">varTitle</div>
+        <div id="varId" class="value sliderContainer" data-value="false" data-importValue="" onclick="toggleSlider(this), valueChanged(this.parentNode), processRules(templateData)" tabindex="0"
+          onkeydown="keyFilter(this), valueChanged(this.parentNode), processRules(templateData)">
+          <div class="nSlider">No</div>
+          <div class="ySlider">Yes</div>
+          <div class="sliderDot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="templateText" class="template">
+      <div class="flexy text" data-changed="false" data-readonly="false">
+        <div class="description">varTitle</div>
+        <div id="varId" class="value" data-importValue="">
+          <input type="text" value="" placeholder="" onclick="valueChanged(this.parentNode.parentNode)" oninput="valueChanged(this.parentNode.parentNode)" onchange="processRules(templateData)">
+        </div>
+        <i class="material-icons autoFillButton" style="display:none;" onclick="processRules(templateData, overwrite=this.parentNode.children[1].id);">flash_on</i>
+      </div>
+    </div>
+
+    <div id="templateMacAddress" class="template">
+      <div class="flexy" data-changed="false" data-readonly="false">
+        <div class="description">varTitle</div>
+        <div id="varId" class="value macAddress" data-importValue=""><input class="macAddressInput" type="text" placeholder="00:00:00:00:00:00" style="text-transform:uppercase" value=""onclick="valueChanged(this.parentNode.parentNode)" oninput="valueChanged(this.parentNode.parentNode)"  onchange="processRules(templateData)"></div>
+        <i class="material-icons autoFillButton" style="display:none;" onclick="processRules(templateData, overwrite=this.parentNode.children[1].id);">flash_on</i>
+      </div>
+    </div>
+
+    <div id="templateTextDouble" class="template">
+      <div class="flexy textDouble" data-changed="false" data-readonly="false">
+        <div class="description">varTitle</div>
+        <div id="varId" class="value" data-importValue="">
+          <input class="halfWidth" type="text" placeholder1="" value1="" onclick="valueChanged(this.parentNode.parentNode)" oninput="valueChanged(this.parentNode.parentNode)" onchange="processRules(templateData)">
+          <input class="halfWidth" type="text" placeholder2="" value2="" style="border-left:1px solid lightgray" onclick="valueChanged(this.parentNode.parentNode)" oninput="valueChanged(this.parentNode.parentNode)" onchange="processRules(templateData)">
+        </div>
+        <i class="material-icons autoFillButton" style="display:none;" onclick="processRules(templateData, overwrite=this.parentNode.children[1].id);">flash_on</i>
+      </div>
+    </div>
+
+    <div id="templateMultipleChoice" class="template">
+      <div class="flexy" data-changed="false" data-readonly="false">
+        <div class="description">varTitle</div>
+        <div id="varId" class="value multipleChoice" data-importValue="">
+          <select class="" id="" onclick="valueChanged(this.parentNode.parentNode)" onchange="valueChanged(this.parentNode.parentNode), processRules(templateData);">varOptions</select>
+          <input id="" class="hideMe" type="text" placeholder="">
+          <i id="ticketStatusEditButton" class="material-icons customEditButton" onclick="customObjectValue(this.parentNode), toggleObjectClass(this, 'customEditButtonActive'), valueChanged(this.parentNode.parentNode);">edit</i>
+          <i class="material-icons autoFillButton" style="display:none;" onclick="processRules(templateData, overwrite=this.parentNode.id);">flash_on</i>
+        </div>
+      </div>
+    </div>
+
+    <div id="templateTextbox" class="template">
+      <div class="centerContainer">
+        <div id="varId" class="textBoxContainer" onclick="valueChanged(this.childNodes[3]);">
+          <h4 class="printShow textBoxTitle">varTitle</h4>
+          <textarea rows="3" class="" placeholder=""
+          style="font-family:roboto;font-weight:300;width:calc(100% - 60px);resize:none;"
+          onchange="valueChanged(this);" data-changed="false" data-importValue=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div id="templateOption" class="template">
+      <option value="varTitle">varTitle</option>
+    </div>
+
+    <div id="jsonTemplateData">replaceMe</div>
+    <div id="jsonAccountData">replaceMe</div>
+
+  </div>
+
+  <script>
+    // This needs to be at the bottom of the page to fire off JS after window loaded
+    window.onload = drawPage();
+  </script>
+    <!--
+      TODO:
+        Create a function to (limit) the data going into the processrules function so it's not processing every single rule on every single call if not needed.
+    -->
+  </body>
+</html>
